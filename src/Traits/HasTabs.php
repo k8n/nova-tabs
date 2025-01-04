@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 declare(strict_types=1);
 
@@ -21,7 +21,7 @@ trait HasTabs
      * @param  string  $label
      * @return Collection
      */
-    protected function resolvePanelsFromFields(NovaRequest $request, FieldCollection $fields, string $label)
+    protected function resolvePanelsFromFields(NovaRequest $request, FieldCollection $fields, string $label): Collection
     {
         [$defaultFields, $fieldsWithPanels] = $fields->each(function ($field) {
             if ($field instanceof BehavesAsPanel && !$field->assignedPanel instanceof Tabs) {
@@ -92,7 +92,7 @@ trait HasTabs
      * @param  string  $label
      * @return \Illuminate\Support\Collection<int, \Laravel\Nova\Panel>
      */
-    protected function panelsWithDefaultLabel(Collection $panels, FieldCollection $fields, $label)
+    protected function panelsWithDefaultLabel(Collection $panels, FieldCollection $fields, string $label): Collection
     {
         return $panels->values()
             ->when($panels->where('name', $label)->isEmpty(), function ($panels) use ($label, $fields) {
